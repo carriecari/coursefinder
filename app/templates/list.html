@@ -1,0 +1,13 @@
+
+{% extends 'layout.html' %}
+
+{% block body %}
+<h2>UBC CPSC Course Picker</h2>
+<h4>Here are some CPSC courses you can take:</h4>
+<div class="jumbotron text-center">
+{% for courses_can_take in your_list %}
+      <p>{{ courses_can_take}} </p>
+  {% endfor %}
+</div>
+
+{% endblock %}

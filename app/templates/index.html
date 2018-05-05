@@ -1,0 +1,25 @@
+
+{% extends 'layout.html' %}
+
+{% block body %}
+          <h2>UBC CPSC Course Picker</h2>
+<div class="jumbotron text-center">
+<h2>Welcome to the CPSC course picker</h2> <p class="lead">Choose which functionality you want to use. Enter in courses you have taken/want to take.</p>
+        <div class="form-group">
+            <form id="form1" method="POST">
+                <!--<div class="radio">-->
+                    <!--<label><input type="radio" name="option" value="cantake">What can I take?</label>-->
+                <!--</div>-->
+                <!--<div class="radio">-->
+                    <!--<label><input type="radio" name="option" value="needtotake">What do I need to take...</label>-->
+                <!--</div>-->
+                <label for="form1">Enter classes here:</label>
+                <input type="text" name="input" class="form-control" placeholder="e.g. CPSC 221 CPSC 213...">
+                <br>
+                <input type="submit" class="btn btn-primary btn-lg" form="form1" value="Submit">
+
+            </form>
+
+        </div>
+</div>
+{% endblock %}
