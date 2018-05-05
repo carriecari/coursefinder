@@ -13,10 +13,8 @@ def my_form_post():
     if request.method == 'POST':
         if ir.valid_courses(request.form['input']):
             text = request.form['input']
-            option = request.form.get('option')
 
             processed_text = text.upper()
-
 
             listcourses = ir.loadCoursesInput(processed_text)
             new_list = []

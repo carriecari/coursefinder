@@ -8,6 +8,7 @@ cryptography==2.2.2
 cssselect==1.0.3
 Flask==1.0.2
 Flask-WTF==0.14.2
+gunicorn==19.8.1
 hyperlink==18.0.0
 idna==2.6
 incremental==17.5.0
