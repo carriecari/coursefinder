@@ -19,6 +19,9 @@ class inputReader():
 
     def loadCoursesInput(self, inputCourses):
 
+        self.arrayTakenCourses = []
+        self.coursesCanTake = []
+
         if re.match('(\w{4}\s?\w{3,4})', inputCourses):
             match = re.findall('(\w{4}\s?\w{3,4})', inputCourses)
             self.arrayTakenCourses.append(match)
@@ -66,11 +69,12 @@ class inputReader():
                 return False
 
         elif prereqs.get('oneof') is not None:
-            oneofrequired = prereqs.get('oneof')  # array
-            if self.containsOneOf(oneofrequired):
-                return True
-            else:
-                return False
+            oneofrequired = prereqs.get('oneof')  # array [[____,____,],[____,____]] or [[____,____]]
+            for one in oneofrequired:
+                if self.containsOneOf(one):
+                    return True
+                else:
+                    return False
 
     def has_a(self, dictofA):
 

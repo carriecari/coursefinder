@@ -19,7 +19,15 @@
                 <input type="submit" class="btn btn-primary btn-lg" form="form1" value="Submit">
 
             </form>
-
         </div>
+    {% if your_list %}
+    <h4>Here are some CPSC courses you can take:</h4>
+<div class="jumbotron text-center">
+{% for courses_can_take in your_list %}
+      <p>{{ courses_can_take}} </p>
+  {% endfor %}
+    {% endif %}
+</div>
+
 </div>
 {% endblock %}

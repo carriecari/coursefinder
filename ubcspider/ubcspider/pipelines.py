@@ -29,24 +29,6 @@ class UbcspiderPipeline(object):
         self.file.write(line)
         return processeditem
 
-    # def add_to_db(self):
-    #
-    #     engine = create_engine(
-    #         'sqlite:///test.db',
-    #         echo=True)
-    #     Base.metadata.create_all(bind=engine)
-    #     Session = sessionmaker(bind=engine)
-    #     session = Session()
-    #
-    #     with open('/items.jl') as courses:
-    #         for line in courses:
-    #             c = loads(line)   #creates one dict
-    #             course_to_add = Course(name=c.get('name', prereqs=c.get('prereqs'), required=c.get('required'), andeither=c.get('andEither')))
-    #             session.add(course_to_add)
-    #             session.commit()
-    #
-    #     session.close()
-
 
     def _process_long_prereq(self, item):
 
@@ -232,16 +214,20 @@ class UbcspiderPipeline(object):
 
 
         else:
+            LoO = []
 
             if re.search(oneOfPattern, longprereqs[0]):
                 oneofList = re.findall(coursePattern, longprereqs[0], flags=0)
-                reqGroups['oneof'] = oneofList
+                LoO.append(oneofList)
+                reqGroups['oneof'] = LoO
             elif re.search(allOfPattern, longprereqs[0]):
                 allofList = re.findall(coursePattern, longprereqs[0], flags=0)
-                reqGroups['allof'] = allofList
+                LoO.append(allofList)
+                reqGroups['allof'] = LoO
             else:
                 allofList = re.findall(coursePattern, longprereqs[0], flags=0)
-                reqGroups['allof'] = allofList
+                LoO.append(allofList)
+                reqGroups['allof'] = LoO
 
             item['required'] = reqGroups
             # item['andEither'] = andEitherDict
