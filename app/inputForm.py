@@ -61,20 +61,22 @@ class inputReader():
 
     def contains_required(self, prereqs):
 
-        if prereqs.get('allof') is not None:
-            allrequired = prereqs.get('allof')  # array
-            if self.containsAllof(allrequired):
-                return True
-            else:
-                return False
-
-        elif prereqs.get('oneof') is not None:
-            oneofrequired = prereqs.get('oneof')  # array [[____,____,],[____,____]] or [[____,____]]
-            for one in oneofrequired:
-                if self.containsOneOf(one):
+        if prereqs.get('allof') is not None:    #{"allof": [["CPSC 322"]]}
+            allrequired = prereqs.get('allof')  # [["CPSC 322"]]
+            for one in allrequired:
+                if self.containsAllof2(one):
                     return True
                 else:
                     return False
+
+        elif prereqs.get('oneof') is not None:
+            oneofrequired = prereqs.get('oneof')  # array [[____,____,],[____,____]] or [[____,____]]
+            for one in oneofrequired:             # [____,____]
+                if self.containsOneOf2(one):
+                    pass
+                else:
+                    return False
+            return True
 
     def has_a(self, dictofA):
 
@@ -118,12 +120,26 @@ class inputReader():
                     return False
             return True
 
+    def containsAllof2(self, allrequired):
+        for course in allrequired:
+            if course in self.arrayTakenCourses[0]:
+                pass
+            else:
+                return False
+            return True
+
     def containsOneOf(self, oneofrequired):
-        for v in oneofrequired:
+        for v in oneofrequired:             # [____,_____]
             for course in v:
                 if course in self.arrayTakenCourses[0]:
                     return True
             return False
+
+    def containsOneOf2(self, oneofrequired):
+        for course in oneofrequired:             # [____,_____]
+            if course in self.arrayTakenCourses[0]:
+                return True
+        return False
 
     def either_containsAllof(self, allrequired):
         for v in allrequired:
